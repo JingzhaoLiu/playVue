@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+      <div id='app'></div>
+    <script src="../dist/index.js"></script>
+
+    <script>
+      const str = `I buy a {{name}}, I {{mood}}!
+        <ul>
+            {{#list}}
+              <li>
+                {{#arr}}
+                  <p>{{.}}</p>
+                {{/arr}}
+              </li>
+            {{/list}}
+        </ul>
+
+        <ul>
+            {{#array}}
+              <li>
+                {{#item}}
+                  <p>{{name}}</p>
+                  <p>{{sex}}</p>
+                  <p>{{age}}</p>
+                {{/item}}
+              </li>
+            {{/list}}
+        </ul>
+        
+        
+        `;
+      const data = {
+        name: "Mac Pro",
+        mood: "happy",
+        list: [
+          { arr: ["看书"] },
+          { arr: ["编程", "游泳"] },
+          { arr: ["绘画", "弹琴", "下棋"] },
+        ],
+        array: [
+          { item: [{ name: "ming", sex: "male", age: 9 }] },
+          { item: [{ name: "fang", sex: "female", age: 29 }] },
+          { item: [{ name: "qi", sex: "female", age: 19 }] },
+        ],
+      };
+      var domStr = ShareTemplate.render(str, data);
+      document.querySelector('#app').innerHTML = domStr
+
+
+    </script>
+  </body>
+</html>
